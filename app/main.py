@@ -155,6 +155,11 @@ async def _upstream_get(request: Request, path: str, params: dict) -> httpx.Resp
             raise
 
 
+@app.get("/")
+async def root():
+    return {"message": "AccuWeather Proxy is running."}
+
+
 @app.get("/locations")
 async def locations(request: Request, q: str = Query(..., min_length=1)):
     api_key = _get_api_key()
